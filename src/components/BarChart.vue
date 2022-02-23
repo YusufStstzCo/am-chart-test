@@ -5,7 +5,8 @@
 
 <script>
 import * as am5 from '@amcharts/amcharts5';
-import * as am5xy from '@amcharts/amcharts5/xy';
+// import * as am5xy from '@amcharts/amcharts5/xy';
+import * as am5percent from "@amcharts/amcharts5/percent";
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 
 
@@ -17,8 +18,7 @@ export default {
     root.setThemes([am5themes_Animated.new(root)]);
 
     let chart = root.container.children.push(
-      am5xy.XYChart.new(root, {
-        panY: false,
+      am5percent.PieChart.new(root, {
         layout: root.verticalLayout
       })
     );
@@ -49,39 +49,41 @@ export default {
     ];
 
     // Create Y-axis
-    let yAxis = chart.yAxes.push(
-      am5xy.ValueAxis.new(root, {
-        renderer: am5xy.AxisRendererY.new(root, {})
-      })
-    );
+    // let yAxis = chart.yAxes.push(
+    //   am5percent.ValueAxis.new(root, {
+    //     renderer: am5percent.AxisRendererY.new(root, {})
+    //   })
+    // );
 
     // Create X-Axis
-    let xAxis = chart.xAxes.push(
-      am5xy.CategoryAxis.new(root, {
-        renderer: am5xy.AxisRendererX.new(root, {}),
+    // let xAxis = chart.xAxes.push(
+    //   am5percent.CategoryAxis.new(root, {
+    //     renderer: am5percent.AxisRendererX.new(root, {}),
+    //     categoryField: "category"
+    //   })
+    // );
+    // xAxis.data.setAll(data);
+
+    // Create series
+    let series = chart.series.push(
+      am5percent.PieSeries.new(root, {
+        name: "Series",
+        valueField: "value1",
         categoryField: "category"
       })
     );
-    xAxis.data.setAll(data);
-
-    // Create series
-    let series1 = chart.series.push(
-      am5xy.ColumnSeries.new(root, {
-        name: "Series",
-        xAxis: xAxis,
-        yAxis: yAxis,
-        valueYField: "value1",
-        categoryXField: "category"
-      })
-    );
-    series1.data.setAll(data);
+    series.data.setAll(data);
 
     // Add legend
-    let legend = chart.children.push(am5.Legend.new(root, {}));
+    let legend = chart.children.push(am5.Legend.new(root, {
+      centerX: am5.percent(50),
+      x: am5.percent(50),
+      layout: root.horizontalLayout
+    }));
     legend.data.setAll(chart.series.values);
 
     // Add cursor
-    chart.set("cursor", am5xy.XYCursor.new(root, {}));
+    chart.set("cursor", am5percent.XYCursor.new(root, {}));
 
     this.root = root;
   },
