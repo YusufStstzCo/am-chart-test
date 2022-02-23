@@ -83,7 +83,15 @@ export default {
     legend.data.setAll(chart.series.values);
 
     // Add cursor
-    chart.set("cursor", am5percent.XYCursor.new(root, {}));
+    chart.set("cursor", am5percent.PieSeries.new(root, {}));
+
+    series.get("colors").set("colors", [
+      am5.color(0x9d0208),
+      am5.color(0xdc2f02),
+      am5.color(0xe85d04),
+      am5.color(0xf48c06),
+      am5.color(0xfaa307)
+    ]);
 
     this.root = root;
   },
