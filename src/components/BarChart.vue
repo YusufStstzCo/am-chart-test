@@ -1,5 +1,7 @@
 <template>
-  <div class="hello" ref="chartdiv">
+  <div>
+    <button v-on:click='getData()'>Pull API Data</button>
+    <div class="hello" ref="chartdiv"></div>
   </div>
 </template>
 
@@ -8,11 +10,42 @@ import * as am5 from '@amcharts/amcharts5';
 // import * as am5xy from '@amcharts/amcharts5/xy';
 import * as am5percent from "@amcharts/amcharts5/percent";
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
-
+import axios from 'axios'
 
 export default {
   name: 'HelloWorld',
+  data: () => { 
+    return {
+      alertData: [],
+      series: null,
+      data: [
+        {
+          label: "Monday",
+          value: 100
+        }, {
+          label: "Tuesday",
+          value: 120
+        }, {
+          label: "Wednesday",
+          value: 85
+        }, {
+          label: "Thursday",
+          value: 85
+        }, {
+          label: "Friday",
+          value: 85
+        }, {
+          label: "Saturday",
+          value: 85
+        }, {
+          label: "Sunday",
+          value: 85
+        }
+      ]
+    }
+  },
   mounted() {
+    // this.getData();
     let root = am5.Root.new(this.$refs.chartdiv);
 
     root.setThemes([am5themes_Animated.new(root)]);
@@ -23,30 +56,34 @@ export default {
       })
     );
 
+
+    // Test Data
+    let data = this.data
+
     // Define data
-    let data = [{
-        category: "Monday",
-        value1: 100
-      }, {
-        category: "Tuesday",
-        value1: 120
-      }, {
-        category: "Wednesday",
-        value1: 85
-      }, {
-        category: "Thursday",
-        value1: 85
-      }, {
-        category: "Friday",
-        value1: 85
-      }, {
-        category: "Saturday",
-        value1: 85
-      }, {
-        category: "Sunday",
-        value1: 85
-      }
-    ];
+    // let data = [{
+    //     category: "Monday",
+    //     value1: 100
+    //   }, {
+    //     category: "Tuesday",
+    //     value1: 120
+    //   }, {
+    //     category: "Wednesday",
+    //     value1: 85
+    //   }, {
+    //     category: "Thursday",
+    //     value1: 85
+    //   }, {
+    //     category: "Friday",
+    //     value1: 85
+    //   }, {
+    //     category: "Saturday",
+    //     value1: 85
+    //   }, {
+    //     category: "Sunday",
+    //     value1: 85
+    //   }
+    // ];
 
     // Create Y-axis
     // let yAxis = chart.yAxes.push(
@@ -65,14 +102,15 @@ export default {
     // xAxis.data.setAll(data);
 
     // Create series
-    let series = chart.series.push(
+    
+    this.series = chart.series.push(
       am5percent.PieSeries.new(root, {
         name: "Series",
-        valueField: "value1",
-        categoryField: "category"
+        valueField: "value",
+        categoryField: "label"
       })
     );
-    series.data.setAll(data);
+    this.series.data.setAll(data);
 
     // Add legend
     let legend = chart.children.push(am5.Legend.new(root, {
@@ -85,8 +123,8 @@ export default {
     // Add cursor
     chart.set("cursor", am5percent.PieSeries.new(root, {}));
 
-    series.get("colors").set("colors", [
-      am5.color(0x9d0208),
+    this.series.get("colors").set("colors", [
+      am5.color(0x000000),
       am5.color(0xdc2f02),
       am5.color(0xe85d04),
       am5.color(0xf48c06),
@@ -94,6 +132,34 @@ export default {
     ]);
 
     this.root = root;
+  },
+  methods: {
+    getData: function() {
+      const userBody = {
+        "clientId": 'AAA19916-278E-4691-9547-08D874108BD7',
+        "fromDate": '2022-02-23T00:00:00',
+        "toDate": '2022-02-23T23:59:59',
+
+        "userId": 193
+      }
+     axios.post('https://mainapi.workstatz.com/api/Data/GetAlertsOverview',userBody)
+      .then(result=>{
+        var totalAlerts = 0;
+        var alertDataList = [];
+        for(let i=0;i<result.data.length;i++)
+        {
+           totalAlerts= totalAlerts+ result.data[i].amount;
+        }
+        for(let i=0;i<result.data.length;i++)
+        {
+            
+            alertDataList.push({label:result.data[i].alerttype,value:(Number(result.data[i].amount/totalAlerts*100).toFixed(3))})
+        }
+
+        this.data = alertDataList;
+        this.series.data.setAll(this.data)
+      })
+    }
   },
 
   beforeDestroy() {

@@ -10,6 +10,7 @@
   "dependencies": {
     "@amcharts/amcharts4": "^4.10.24",
     "@amcharts/amcharts5": "^5.1.4",
+    "axios": "^0.26.0",
     "core-js": "^3.6.5",
     "vue": "^2.6.11"
   },
