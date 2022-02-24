@@ -1,8 +1,9 @@
 <template>
   <div>
     <button v-on:click='getData()'>Pull API Data</button>
+   
     <div class="hello" ref="chartdiv"></div>
-  </div>
+   </div>
 </template>
 
 <script>
@@ -16,6 +17,7 @@ export default {
   name: 'HelloWorld',
   data: () => { 
     return {
+      dataLoaded:false,
       alertData: [],
       series: null,
       data: [
@@ -124,7 +126,7 @@ export default {
     chart.set("cursor", am5percent.PieSeries.new(root, {}));
 
     this.series.get("colors").set("colors", [
-      am5.color(0x000000),
+      am5.color(0x000300),
       am5.color(0xdc2f02),
       am5.color(0xe85d04),
       am5.color(0xf48c06),
@@ -142,19 +144,29 @@ export default {
 
         "userId": 193
       }
-     axios.post('https://mainapi.workstatz.com/api/Data/GetAlertsOverview',userBody)
+     axios.post('https://mainapi.workstatz.com/api/Data/GetProductivityView',userBody)
       .then(result=>{
-        var totalAlerts = 0;
+      
         var alertDataList = [];
-        for(let i=0;i<result.data.length;i++)
-        {
-           totalAlerts= totalAlerts+ result.data[i].amount;
-        }
-        for(let i=0;i<result.data.length;i++)
-        {
-            
-            alertDataList.push({label:result.data[i].alerttype,value:(Number(result.data[i].amount/totalAlerts*100).toFixed(3))})
-        }
+        
+          alertDataList.push({label:'Productive',
+          value:result.data["productive"],
+          "color":  am5.color(0xdc2f02)
+         
+          })
+          alertDataList.push({label:'Ineffective',
+          value:result.data["inefficient"],
+           "color":  am5.color(0xe85d04)
+         
+          })
+          alertDataList.push({label:'Passive',
+          value:result.data["passive"],
+           "color":  am5.color(0xfaa307)
+         
+          })
+         
+          this.dataLoaded = true;
+        
 
         this.data = alertDataList;
         this.series.data.setAll(this.data)
