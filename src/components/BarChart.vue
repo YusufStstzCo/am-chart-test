@@ -126,11 +126,10 @@ export default {
     chart.set("cursor", am5percent.PieSeries.new(root, {}));
 
     this.series.get("colors").set("colors", [
-      am5.color(0x000300),
-      am5.color(0xdc2f02),
-      am5.color(0xe85d04),
-      am5.color(0xf48c06),
-      am5.color(0xfaa307)
+      am5.color("#48CFAE"),
+      am5.color("#ED5564"),
+      am5.color("#FF8A55")
+      
     ]);
 
     this.root = root;
@@ -150,18 +149,17 @@ export default {
         var alertDataList = [];
         
           alertDataList.push({label:'Productive',
-          value:result.data["productive"],
-          "color":  am5.color(0xdc2f02)
+          value:result.data["productive"]
+        
          
           })
           alertDataList.push({label:'Ineffective',
-          value:result.data["inefficient"],
-           "color":  am5.color(0xe85d04)
+          value:result.data["inefficient"]
          
           })
           alertDataList.push({label:'Passive',
-          value:result.data["passive"],
-           "color":  am5.color(0xfaa307)
+          value:result.data["passive"]
+         
          
           })
          
