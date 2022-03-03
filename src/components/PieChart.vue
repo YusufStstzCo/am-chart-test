@@ -109,10 +109,22 @@ export default {
       am5percent.PieSeries.new(root, {
         name: "Series",
         valueField: "value",
-        categoryField: "label"
+        categoryField: "label",
+        alignLabels: false
       })
     );
     this.series.data.setAll(data);
+
+    this.series.labels.template.setAll({
+      alignLabels: false,
+      fontSize: 12,
+      text: "{category}",
+      textType: "circular",
+      inside: true,
+      radius: 10,
+      fill: am5.color(0xFFFFFF),
+      centerX: am5.percent(100)
+    });
 
     // Add legend
     let legend = chart.children.push(am5.Legend.new(root, {
@@ -129,7 +141,6 @@ export default {
       am5.color("#48CFAE"),
       am5.color("#ED5564"),
       am5.color("#FF8A55")
-      
     ]);
 
     this.root = root;
