@@ -6,7 +6,8 @@ export default class StatzTheme extends am5.Theme {
         // strokeWidth: 2,
         // strokeDasharray: [10, 5],
         fillOpacity: 0.5,
-        visible: true
+        visible: true,
+        fill: am5.color("#48CFAE")
       });
       
       this.rule("Bullet").setup = function(target) {

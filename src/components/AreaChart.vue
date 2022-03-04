@@ -206,14 +206,20 @@ export default {
     // );
     // this.series.data.setAll(this.data);
 
-    this.createSeries("Productive", "productive");
-    this.createSeries("Ineffective", "ineffective");
-    this.createSeries("30Weekavg", "weekavg");
+    this.createSeries("Productive", "productive", "#48CFAE");
+    this.createSeries("Ineffective", "ineffective", "#ED5564");
+    this.createSeries("30Weekavg", "weekavg", "#aab2bd");
 
 		// this.series.fills.template.setAll({
 		// 	visible: true,
 		// 	fillOpacity: 0.2
 		// });
+
+    this.series.get("colors").set("colors", [
+      am5.color("#48CFAE"),
+      am5.color("#ED5564"),
+      am5.color("#FF8A55")
+    ]);
 
     this.series.labels.template.setAll({
       alignLabels: false,
@@ -269,7 +275,7 @@ export default {
             console.log(result.data[i].percentage, this.data[i].productive)
           }
         }
-        this.createSeries("Productive", "productive");
+        this.createSeries("Productive", "productive", "#48CFAE");
       })
 
       const userBody2 = {
@@ -289,7 +295,7 @@ export default {
             console.log(result.data[i].percentage, this.data[i].ineffective)
           }
         }
-        this.createSeries("Ineffective", "ineffective");
+        this.createSeries("Ineffective", "ineffective", "#ED5564");
       })
 
       const userBody3 = {
@@ -309,7 +315,7 @@ export default {
             console.log(result.data[i].percentage, this.data[i].weekavg)
           }
         }
-        this.createSeries("30Weekavg", "weekavg");
+        this.createSeries("30Weekavg", "weekavg", "#aab2bd");
       })
       
 
@@ -320,7 +326,7 @@ export default {
       // this.series.data = []
       // console.log(this.series.get("colors"))
     },
-    createSeries: function(name, field) {
+    createSeries: function(name, field, color) {
       this.series = this.chart.series.push(
         am5xy.SmoothedXLineSeries.new(this.root, {
           name: name,
@@ -330,6 +336,7 @@ export default {
           categoryXField: "label",
         })
       );
+      this.series.set("fill", am5.color(color))
       this.series.data.setAll(this.data);
       },
     },
