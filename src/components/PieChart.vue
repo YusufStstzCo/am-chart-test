@@ -54,54 +54,14 @@ export default {
 
     let chart = root.container.children.push(
       am5percent.PieChart.new(root, {
-        layout: root.verticalLayout
+        layout: root.verticalLayout,
+        innerRadius: am5.percent(70)
       })
     );
 
 
     // Test Data
     let data = this.data
-
-    // Define data
-    // let data = [{
-    //     category: "Monday",
-    //     value1: 100
-    //   }, {
-    //     category: "Tuesday",
-    //     value1: 120
-    //   }, {
-    //     category: "Wednesday",
-    //     value1: 85
-    //   }, {
-    //     category: "Thursday",
-    //     value1: 85
-    //   }, {
-    //     category: "Friday",
-    //     value1: 85
-    //   }, {
-    //     category: "Saturday",
-    //     value1: 85
-    //   }, {
-    //     category: "Sunday",
-    //     value1: 85
-    //   }
-    // ];
-
-    // Create Y-axis
-    // let yAxis = chart.yAxes.push(
-    //   am5percent.ValueAxis.new(root, {
-    //     renderer: am5percent.AxisRendererY.new(root, {})
-    //   })
-    // );
-
-    // Create X-Axis
-    // let xAxis = chart.xAxes.push(
-    //   am5percent.CategoryAxis.new(root, {
-    //     renderer: am5percent.AxisRendererX.new(root, {}),
-    //     categoryField: "category"
-    //   })
-    // );
-    // xAxis.data.setAll(data);
 
     // Create series
     
