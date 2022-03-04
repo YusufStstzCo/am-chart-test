@@ -34,129 +34,127 @@ export default {
           label: "00:00",
           productive: 1,
           ineffective: 2.5,
-          Weekavg: 5
+          weekavg: 5
         },{
           label: "01:00",
           productive: 1,
           ineffective: 2.5,
-          Weekavg: 5
+          weekavg: 5
         }, {
           label: "02:00",
           productive: 3,
           ineffective: 2.1,
-          Weekavg: 4
+          weekavg: 4
         }, {
           label: "03:00",
           productive: 2,
           ineffective: 3,
-          Weekavg: 4.5
+          weekavg: 4.5
         }, {
           label: "04:00",
           productive: 1,
           ineffective: 2,
-          Weekavg: 3.5
+          weekavg: 3.5
         }, {
           label: "05:00",
           productive: 1.5,
           ineffective: 0.5,
-          Weekavg: 3
+          weekavg: 3
         }, {
           label: "06:00",
           productive: 1.5,
           ineffective: 0.5,
-          Weekavg: 3
+          weekavg: 3
         }, {
           label: "07:00",
           productive: 1.5,
           ineffective: 0.5,
-          Weekavg: 3
+          weekavg: 3
         }, {
           label: "08:00",
           productive: 1.5,
           ineffective: 0.5,
-          Weekavg: 3
+          weekavg: 3
         }, {
           label: "09:00",
           productive: 1.5,
           ineffective: 0.5,
-          Weekavg: 3
+          weekavg: 3
         }, {
           label: "10:00",
           productive: 1.5,
           ineffective: 0.5,
-          Weekavg: 3
+          weekavg: 3
         }, {
           label: "11:00",
           productive: 1.5,
           ineffective: 0.5,
-          Weekavg: 3
+          weekavg: 3
         }, {
           label: "12:00",
           productive: 1.5,
           ineffective: 0.5,
-          Weekavg: 3
+          weekavg: 3
         }, {
           label: "13:00",
           productive: 50,
           ineffective: 40,
-          Weekavg: 30
+          weekavg: 30
         }, {
           label: "14:00",
           productive: 50,
           ineffective: 40,
-          Weekavg: 30
+          weekavg: 30
         }, {
           label: "15:00",
           productive: 50,
           ineffective: 40,
-          Weekavg: 30
+          weekavg: 30
         }, {
           label: "16:00",
           productive: 50,
           ineffective: 40,
-          Weekavg: 30
+          weekavg: 30
         }, {
           label: "17:00",
           productive: 50,
           ineffective: 40,
-          Weekavg: 30
+          weekavg: 30
         }, {
           label: "18:00",
           productive: 1.5,
           ineffective: 0.5,
-          Weekavg: 3
+          weekavg: 3
         }, {
           label: "19:00",
           productive: 1.5,
           ineffective: 0.5,
-          Weekavg: 3
+          weekavg: 3
         }, {
           label: "20:00",
           productive: 1.5,
           ineffective: 0.5,
-          Weekavg: 3
+          weekavg: 3
         }, {
           label: "21:00",
           productive: 1.5,
           ineffective: 0.5,
-          Weekavg: 3
+          weekavg: 3
         }, {
           label: "22:00",
           productive: 1.5,
           ineffective: 0.5,
-          Weekavg: 3
+          weekavg: 3
         }, {
           label: "23:00",
           productive: 1.5,
           ineffective: 0.5,
-          Weekavg: 3
+          weekavg: 3
         }
       ]
     }
   },
   mounted() {
-
-
     // this.getData();
     this.root = am5.Root.new(this.$refs.chartdiv);
 
@@ -210,13 +208,7 @@ export default {
 
     this.createSeries("Productive", "productive");
     this.createSeries("Ineffective", "ineffective");
-    this.createSeries("Offline", "Weekavg");
-
-    this.series.get("colors").set("colors", [
-      am5.color("#48CFAE"),
-      am5.color("#ED5564"),
-      am5.color("#FF8A55")
-    ]);
+    this.createSeries("30Weekavg", "weekavg");
 
 		// this.series.fills.template.setAll({
 		// 	visible: true,
@@ -226,7 +218,7 @@ export default {
     this.series.labels.template.setAll({
       alignLabels: false,
       fontSize: 12,
-      text: "{category}",
+      text: "{label}",
       textType: "circular",
       inside: true,
       radius: 10,
@@ -248,17 +240,18 @@ export default {
     // Add cursor
     this.chart.set("cursor", am5xy.LineSeries.new(this.root, {}));
 
-    this.series.get("colors").set("colors", [
-      am5.color("#FFC0CB"),
-      am5.color("#ED5564"),
-      am5.color("#FF8A55")
-      
-    ]);
-
     // this.root = root;
   },
   methods: {
     getData: function() {
+      for(var i =0;i<this.data.length; i++) {
+        this.data[i].productive = null
+        this.data[i].ineffective = null
+        this.data[i].weekavg = null
+      }
+      // this.chart.series.data = []
+      // this.chart.series.removeIndex(1)
+      // this.chart.series.removeIndex(2)
       const userBody = {
         "clientId": 'AAA19916-278E-4691-9547-08D874108BD7',
         "fromDate": '2022-02-23T00:00:00',
@@ -276,9 +269,8 @@ export default {
             console.log(result.data[i].percentage, this.data[i].productive)
           }
         }
+        this.createSeries("Productive", "productive");
       })
-
-      this.createSeries("Productive", "productive");
 
       const userBody2 = {
         "clientId": 'AAA19916-278E-4691-9547-08D874108BD7',
@@ -297,6 +289,7 @@ export default {
             console.log(result.data[i].percentage, this.data[i].ineffective)
           }
         }
+        this.createSeries("Ineffective", "ineffective");
       })
 
       const userBody3 = {
@@ -312,10 +305,11 @@ export default {
 
         for(var i =0;i<result.data.length; i++) {
           if(this.data[i].label === result.data[i].timeStampHour){
-            this.data[i].Weekavg = result.data[i].percentage
-            console.log(result.data[i].percentage, this.data[i].Weekavg)
+            this.data[i].weekavg = result.data[i].percentage
+            console.log(result.data[i].percentage, this.data[i].weekavg)
           }
         }
+        this.createSeries("30Weekavg", "weekavg");
       })
       
 

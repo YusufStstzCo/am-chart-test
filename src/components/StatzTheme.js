@@ -2,9 +2,11 @@ import * as am5 from '@amcharts/amcharts5';
 
 export default class StatzTheme extends am5.Theme {
     setupDefaultRules() {
-      this.rule("Graphics", ["line", "series", "stroke"]).setAll({
-        strokeWidth: 2,
-        strokeDasharray: [10, 5]
+      this.rule("Graphics", ["line", "series", "fill"]).setAll({
+        // strokeWidth: 2,
+        // strokeDasharray: [10, 5],
+        fillOpacity: 0.5,
+        visible: true
       });
       
       this.rule("Bullet").setup = function(target) {
