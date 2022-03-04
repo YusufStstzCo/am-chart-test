@@ -13,6 +13,7 @@ import * as am5xy from '@amcharts/amcharts5/xy';
 // import * as am5percent from "@amcharts/amcharts5/percent";
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import axios from 'axios'
+import StatzTheme from "./StatzTheme"
 
 export default {
   name: 'HelloWorld',
@@ -154,10 +155,12 @@ export default {
     }
   },
   mounted() {
+
+
     // this.getData();
     this.root = am5.Root.new(this.$refs.chartdiv);
 
-    this.root.setThemes([am5themes_Animated.new(this.root)]);
+    this.root.setThemes([am5themes_Animated.new(this.root), StatzTheme.new(this.root)]);
 
     this.chart = this.root.container.children.push(
       am5xy.XYChart.new(this.root, {
