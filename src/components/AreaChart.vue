@@ -169,9 +169,6 @@ export default {
       })
     );
 
-    // Set data variable to data object
-    // let data = this.data
-
     // Create Y-axis
     this.yAxis = this.chart.yAxes.push(
       am5xy.ValueAxis.new(this.root, {
@@ -184,7 +181,6 @@ export default {
     // Create X-Axis
     this.xAxis = this.chart.xAxes.push(
       am5xy.CategoryAxis.new(this.root, {
-				// maxDeviation: 0,
 				categoryField: "label",
         renderer: am5xy.AxisRendererX.new(this.root, {
 					minGridDistance: 30
@@ -194,33 +190,10 @@ export default {
     );
     this.xAxis.data.setAll(this.data);
 
-    // Create series
-    // this.series = this.chart.series.push(
-    //   am5xy.SmoothedXLineSeries.new(this.root, {
-    //     name: "Series 1",
-		// 		xAxis: this.xAxis,
-		// 		yAxis: this.yAxis,
-		// 		valueYField: "value2",
-		// 		valueXField: "date",
-    //   })
-    // );
-    // this.series.data.setAll(this.data);
-
     this.createSeries("Productive", "productive", "#48CFAE");
     this.createSeries("Ineffective", "ineffective", "#ED5564");
     this.createSeries("30Weekavg", "weekavg", "#aab2bd");
-
-		// this.series.fills.template.setAll({
-		// 	visible: true,
-		// 	fillOpacity: 0.2
-		// });
-
-    this.series.get("colors").set("colors", [
-      am5.color("#48CFAE"),
-      am5.color("#ED5564"),
-      am5.color("#FF8A55")
-    ]);
-
+    
     this.series.labels.template.setAll({
       alignLabels: false,
       fontSize: 12,
