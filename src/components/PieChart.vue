@@ -12,6 +12,7 @@ import * as am5 from '@amcharts/amcharts5';
 import * as am5percent from "@amcharts/amcharts5/percent";
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import axios from 'axios'
+import StatzTheme from "./StatzTheme"
 
 export default {
   name: 'HelloWorld',
@@ -50,18 +51,18 @@ export default {
     // this.getData();
     let root = am5.Root.new(this.$refs.chartdiv);
 
-    root.setThemes([am5themes_Animated.new(root)]);
+    root.setThemes([am5themes_Animated.new(root), StatzTheme.new(this.root)]);
 
     let chart = root.container.children.push(
       am5percent.PieChart.new(root, {
         layout: root.verticalLayout,
-        innerRadius: am5.percent(70)
+        innerRadius: am5.percent(75)
       })
     );
 
 
     // Test Data
-    let data = this.data
+    // let data = this.data
 
     // Create series
     
@@ -73,7 +74,7 @@ export default {
         alignLabels: false
       })
     );
-    this.series.data.setAll(data);
+    this.series.data.setAll(this.data);
 
     this.series.labels.template.setAll({
       alignLabels: false,
