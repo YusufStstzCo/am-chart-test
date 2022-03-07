@@ -1,7 +1,10 @@
 <template>
   <div>
 		<button v-on:click='getData()'>Pull API Data</button>
-    <!-- <button v-on:click='createSeries()'>Series 1</button> -->
+    <button v-on:click='createSeries("Productive", "productive", "#48CFAE")'>Productive1</button>
+    <button v-on:click='createSeries("Ineffective", "ineffective", "#ED5564")'>Ineffective</button>
+    <button v-on:click='createSeries("30Weekavg", "weekavg", "#AAB2BD")'>30 Week Avg</button>
+    <button v-on:click='clear()'>Clear</button>
 		
 		<div class="hello" ref="chartdiv"></div>
   </div>
@@ -190,7 +193,7 @@ export default {
     );
     this.xAxis.data.setAll(this.data);
 
-    this.createSeries("Productive", "productive", "#48CFAE");
+    // this.createSeries("Productive", "productive", "#48CFAE");
     this.createSeries("Ineffective", "ineffective", "#ED5564");
     this.createSeries("30Weekavg", "weekavg", "#aab2bd");
     
@@ -219,85 +222,81 @@ export default {
     // Add cursor
     this.chart.set("cursor", am5xy.LineSeries.new(this.root, {}));
 
-    // this.root = root;
   },
   methods: {
     getData: function() {
-      for(var i =0;i<this.data.length; i++) {
-        this.data[i].productive = null
-        this.data[i].ineffective = null
-        this.data[i].weekavg = null
-      }
-      // this.chart.series.data = []
-      // this.chart.series.removeIndex(1)
-      // this.chart.series.removeIndex(2)
+
+      this.clear()
+
       const userBody = {
         "clientId": 'AAA19916-278E-4691-9547-08D874108BD7',
-        "fromDate": '2022-02-23T00:00:00',
-        "toDate": '2022-02-23T23:59:59',
+        "dateFrom": '2022-02-23T00:00:00',
+        "dateTo": '2022-02-23T23:59:59',
         "state": 'Productive',
         "userId": 193
       }
       axios.post('https://mainapi.workstatz.com/api/Data/GetMainWTGraph',userBody)
       .then(result=>{
-        console.log('productive results', result.data)
+        // console.log('productive results', result.data)
 
         for(var i =0;i<result.data.length; i++) {
           if(this.data[i].label === result.data[i].timeStampHour){
             this.data[i].productive = result.data[i].percentage
-            console.log(result.data[i].percentage, this.data[i].productive)
           }
         }
+        console.log('productive results', this.data.productive)
         this.createSeries("Productive", "productive", "#48CFAE");
       })
 
       const userBody2 = {
         "clientId": 'AAA19916-278E-4691-9547-08D874108BD7',
-        "fromDate": '2022-02-23T00:00:00',
-        "toDate": '2022-02-23T23:59:59',
+        "dateFrom": '2022-02-23T00:00:00',
+        "dateTo": '2022-02-23T23:59:59',
         "state": 'Ineffective',
         "userId": 193
       }
       axios.post('https://mainapi.workstatz.com/api/Data/GetMainWTGraph',userBody2)
       .then(result=>{
-        console.log('ineffective results',result.data)
+        // console.log('ineffective results',result.data)
 
         for(var i =0;i<result.data.length; i++) {
           if(this.data[i].label === result.data[i].timeStampHour){
             this.data[i].ineffective = result.data[i].percentage
-            console.log(result.data[i].percentage, this.data[i].ineffective)
           }
         }
+        console.log('ineffective results', this.data.ineffective)
         this.createSeries("Ineffective", "ineffective", "#ED5564");
       })
 
       const userBody3 = {
         "clientId": 'AAA19916-278E-4691-9547-08D874108BD7',
-        "fromDate": '2022-02-23T00:00:00',
-        "toDate": '2022-02-23T23:59:59',
+        "dateFrom": '2022-02-23T00:00:00',
+        "dateTo": '2022-02-23T23:59:59',
         "state": '30Weekavg',
         "userId": 193
       }
       axios.post('https://mainapi.workstatz.com/api/Data/GetMainWTGraph',userBody3)
       .then(result=>{
-        console.log('average results',result.data)
+        // console.log('average results',result.data)
 
         for(var i =0;i<result.data.length; i++) {
           if(this.data[i].label === result.data[i].timeStampHour){
             this.data[i].weekavg = result.data[i].percentage
-            console.log(result.data[i].percentage, this.data[i].weekavg)
           }
         }
-        this.createSeries("30Weekavg", "weekavg", "#aab2bd");
+        console.log('average results', this.data.weekavg)
+        this.createSeries("30Weekavg", "weekavg", "#AAB2BD");
       })
       
-
-      // this.data = alertDataList;
       this.series.data.setAll(this.data)
     },
     clear: function() {
-      // this.series.data = []
-      // console.log(this.series.get("colors"))
+      var length = this.chart.series.length
+      console.log('length', length)
+      for(var i =0;i<length; i++) {
+        this.chart.series.removeIndex(0)
+        console.log('removed')
+      }
     },
     createSeries: function(name, field, color) {
       this.series = this.chart.series.push(
