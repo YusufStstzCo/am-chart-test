@@ -24,7 +24,7 @@ export default {
       chart: null,
       root: null,
       name: null,
-      valueYField: null,
+      // valueYField: null,
 
       xAxis: null,
       yAxis: null,
@@ -65,9 +65,7 @@ export default {
     this.yAxis = this.chart.yAxes.push(
       am5xy.CategoryAxis.new(this.root, {
         categoryField: "label",
-        renderer: am5xy.AxisRendererY.new(this.root, {
-          minGridDistance: 20
-        })
+        renderer: am5xy.AxisRendererY.new(this.root, {})
       })
     );
     this.yAxis.data.setAll(this.data);
@@ -80,7 +78,7 @@ export default {
         renderer: am5xy.AxisRendererX.new(this.root, {}),
       })
     );
-    this.xAxis.data.setAll(this.data);
+    // this.xAxis.data.setAll(this.data);
 
     this.createSeries("Series", "value");
   },
@@ -112,6 +110,7 @@ export default {
 			);
       this.series.columns.template.column.adapter.add("cornerRadiusTopLeft", 10);
       this.series.set("fill", am5.color("#48CFAE"))
+      this.series.set("stroke", am5.color("#48CFAE"))
 			this.series.data.setAll(this.data);
 		},
 		beforeDestroy() {
