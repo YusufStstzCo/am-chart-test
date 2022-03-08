@@ -105,10 +105,9 @@ export default {
 					xAxis: this.xAxis, 
 					yAxis: this.yAxis, 
 					categoryYField: "label",
-					valueXField: field, 
+					valueXField: field
 				}) 
 			);
-      this.series.columns.template.column.adapter.add("cornerRadiusTopLeft", 10);
       this.series.set("fill", am5.color("#48CFAE"))
       this.series.set("stroke", am5.color("#48CFAE"))
 			this.series.data.setAll(this.data);
