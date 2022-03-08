@@ -309,6 +309,7 @@ export default {
         })
       );
       this.series.set("fill", am5.color(color))
+      this.series.set("stroke", am5.color(color))
       this.series.data.setAll(this.data);
       },
     },
