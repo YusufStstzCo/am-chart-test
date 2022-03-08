@@ -35,69 +35,69 @@ export default {
       data: [
         {
           label: "00:00",
-          productive: 1,
-          ineffective: 2.5,
-          weekavg: 5
+          productive: 0,
+          ineffective: 0,
+          weekavg: 0
         },{
           label: "01:00",
-          productive: 1,
-          ineffective: 2.5,
-          weekavg: 5
+          productive: 0,
+          ineffective: 0,
+          weekavg: 0
         }, {
           label: "02:00",
-          productive: 3,
-          ineffective: 2.1,
-          weekavg: 4
+          productive: 0,
+          ineffective: 0,
+          weekavg: 0
         }, {
           label: "03:00",
-          productive: 2,
-          ineffective: 3,
-          weekavg: 4.5
+          productive: 0,
+          ineffective: 0,
+          weekavg: 0
         }, {
           label: "04:00",
-          productive: 1,
-          ineffective: 2,
-          weekavg: 3.5
+          productive: 0,
+          ineffective: 0,
+          weekavg: 0
         }, {
           label: "05:00",
-          productive: 1.5,
-          ineffective: 0.5,
-          weekavg: 3
+          productive: 0,
+          ineffective: 0,
+          weekavg: 0
         }, {
           label: "06:00",
-          productive: 1.5,
-          ineffective: 0.5,
-          weekavg: 3
+          productive: 0,
+          ineffective: 0,
+          weekavg: 0
         }, {
           label: "07:00",
-          productive: 1.5,
-          ineffective: 0.5,
-          weekavg: 3
+          productive: 0,
+          ineffective: 0,
+          weekavg: 0
         }, {
           label: "08:00",
-          productive: 1.5,
-          ineffective: 0.5,
-          weekavg: 3
+          productive: 0,
+          ineffective: 0,
+          weekavg: 0
         }, {
           label: "09:00",
-          productive: 1.5,
-          ineffective: 0.5,
-          weekavg: 3
+          productive: 0,
+          ineffective: 0,
+          weekavg: 0
         }, {
           label: "10:00",
-          productive: 1.5,
-          ineffective: 0.5,
-          weekavg: 3
+          productive: 0,
+          ineffective: 0,
+          weekavg: 0
         }, {
           label: "11:00",
-          productive: 1.5,
-          ineffective: 0.5,
-          weekavg: 3
+          productive: 0,
+          ineffective: 0,
+          weekavg: 0
         }, {
           label: "12:00",
-          productive: 1.5,
-          ineffective: 0.5,
-          weekavg: 3
+          productive: 0,
+          ineffective: 0,
+          weekavg: 0
         }, {
           label: "13:00",
           productive: 50,
@@ -125,34 +125,34 @@ export default {
           weekavg: 30
         }, {
           label: "18:00",
-          productive: 1.5,
-          ineffective: 0.5,
-          weekavg: 3
+          productive: 0,
+          ineffective: 0,
+          weekavg: 0
         }, {
           label: "19:00",
-          productive: 1.5,
-          ineffective: 0.5,
-          weekavg: 3
+          productive: 0,
+          ineffective: 0,
+          weekavg: 0
         }, {
           label: "20:00",
-          productive: 1.5,
-          ineffective: 0.5,
-          weekavg: 3
+          productive: 0,
+          ineffective: 0,
+          weekavg: 0
         }, {
           label: "21:00",
-          productive: 1.5,
-          ineffective: 0.5,
-          weekavg: 3
+          productive: 0,
+          ineffective: 0,
+          weekavg: 0
         }, {
           label: "22:00",
-          productive: 1.5,
-          ineffective: 0.5,
-          weekavg: 3
+          productive: 0,
+          ineffective: 0,
+          weekavg: 0
         }, {
           label: "23:00",
-          productive: 1.5,
-          ineffective: 0.5,
-          weekavg: 3
+          productive: 0,
+          ineffective: 0,
+          weekavg: 0
         }
       ]
     }
