@@ -29,7 +29,52 @@ export default {
 
       xAxis: null,
       yAxis: null,
-      data: []
+      data: [
+        {
+          label: "Admin",
+          value: 0
+        },
+        {
+          label: "Banking",
+          value: 0
+        },
+        {
+          label: "Business Systems",
+          value: 0
+        },
+        {
+          label: "Messaging",
+          value: 0
+        },
+        {
+          label: "Email",
+          value: 0
+        },
+        {
+          label: "IT Systems",
+          value: 0
+        },
+        {
+          label: "Meetings",
+          value: 0
+        },
+        {
+          label: "Research",
+          value: 0
+        },
+        {
+          label: "Social",
+          value: 0
+        },
+        {
+          label: "Training",
+          value: 0
+        },
+        {
+          label: "Ineffective",
+          value: 0
+        }
+      ]
     }
   },
   mounted() {
