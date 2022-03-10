@@ -1,7 +1,7 @@
 <template>
   <div>
-		<button v-on:click='getData()'>Pull API Data</button>
-		<button v-on:click='clear()'>Clear</button>
+		<!-- <button v-on:click='getData()'>Pull API Data</button> -->
+		<!-- <button v-on:click='clear()'>Clear</button> -->
 		
 		<div class="hello" ref="chartdiv"></div>
   </div>
@@ -113,6 +113,7 @@ export default {
     // this.xAxis.data.setAll(this.data);
 
     // this.createSeries("Series", "value");
+    this.getData();
   },
   methods: {
     getData: function() {
