@@ -1,6 +1,7 @@
 <template>
   <div>
 		<button v-on:click='getData()'>Pull API Data</button>
+		<button v-on:click='clear()'>Clear</button>
 		
 		<div class="hello" ref="chartdiv"></div>
   </div>
@@ -28,21 +29,7 @@ export default {
 
       xAxis: null,
       yAxis: null,
-      data: [
-        {
-          label: 'Email',
-					value: 40
-				}, {
-					label: 'Texting',
-					value: 80
-				}, {
-					label: 'Admin',
-					value: 70
-				}, {
-					label: 'IT Systems',
-					value: 20
-        }
-      ]
+      data: []
     }
   },
   mounted() {
@@ -80,7 +67,7 @@ export default {
     );
     // this.xAxis.data.setAll(this.data);
 
-    this.createSeries("Series", "value");
+    // this.createSeries("Series", "value");
   },
   methods: {
     getData: function() {
@@ -89,29 +76,88 @@ export default {
         "clientId": 'AAA19916-278E-4691-9547-08D874108BD7',
         "fromDate": '2022-02-23T00:00:00',
         "toDate": '2022-02-23T23:59:59',
-        "state": 'Productive',
         "userId": 193
       }
-      axios.post('https://mainapi.workstatz.com/api/Data/GetMainWTGraph',userBody)
+      axios.post('https://mainapi.workstatz.com/api/Data/GetCategoryDash',userBody)
       .then(result=>{
           console.log(result.data)
+          
+          this.data = [
+            {
+              label: "Admin",
+              value: result.data.admin
+            },
+            {
+              label: "Banking",
+              value: result.data.banking
+            },
+            {
+              label: "Business Systems",
+              value: result.data.bs
+            },
+            {
+              label: "Messaging",
+              value: result.data.chat
+            },
+            {
+              label: "Email",
+              value: result.data.email
+            },
+            {
+              label: "IT Systems",
+              value: result.data.itsys
+            },
+            {
+              label: "Meetings",
+              value: result.data.meetings
+            },
+            {
+              label: "Research",
+              value: result.data.research
+            },
+            {
+              label: "Social",
+              value: result.data.social
+            },
+            {
+              label: "Training",
+              value: result.data.training
+            },
+            {
+              label: "Ineffective",
+              value: result.data.ineffective
+            }
+          ]
+          console.log(this.data)
+          // this.series.data.setAll(this.data)
+          this.createSeries();
       })
-      this.series.data.setAll(this.data)
     },
-		createSeries: function(name, field) {
+
+		createSeries: function() {
 			this.series = this.chart.series.push( 
 				am5xy.ColumnSeries.new(this.root, { 
-					name: name,
+					name: "barChart",
 					xAxis: this.xAxis, 
 					yAxis: this.yAxis, 
 					categoryYField: "label",
-					valueXField: field
+					valueXField: "value"
 				}) 
 			);
       this.series.set("fill", am5.color("#48CFAE"))
       this.series.set("stroke", am5.color("#48CFAE"))
 			this.series.data.setAll(this.data);
 		},
+
+    clear: function() {
+      var length = this.chart.series.length
+      console.log('length', length)
+      for(var i =0;i<length; i++) {
+        this.chart.series.removeIndex(0)
+        console.log('removed')
+      }
+    },
+
 		beforeDestroy() {
 			if (this.root) {
 				this.root.dispose();
