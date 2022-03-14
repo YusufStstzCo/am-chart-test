@@ -167,8 +167,8 @@ export default {
       am5xy.XYChart.new(this.root, {
         panX: false,
         panY: false,
-        wheelX: "panX",
-        wheelY: "zoomX"
+        // wheelX: "panX",
+        // wheelY: "zoomX"
       })
     );
 
@@ -186,14 +186,14 @@ export default {
       am5xy.CategoryAxis.new(this.root, {
 				categoryField: "label",
         renderer: am5xy.AxisRendererX.new(this.root, {
-					minGridDistance: 30
-				}),
+          
+        }),
         tooltip: am5.Tooltip.new(this.root, {})
       })
     );
     this.xAxis.data.setAll(this.data);
 
-    // this.createSeries("Productive", "productive", "#48CFAE");
+    this.createSeries("Productive", "productive", "#48CFAE");
     this.createSeries("Ineffective", "ineffective", "#ED5564");
     this.createSeries("30Weekavg", "weekavg", "#aab2bd");
     

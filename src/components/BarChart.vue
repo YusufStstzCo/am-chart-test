@@ -88,7 +88,8 @@ export default {
     this.chart = this.root.container.children.push( 
       am5xy.XYChart.new(this.root, {
         panY: false,
-        wheelY: "zoomX",
+        panX: false,
+        // wheelY: "zoomX",
         layout: this.root.horizontalLayout
       }) 
     );
