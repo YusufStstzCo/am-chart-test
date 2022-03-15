@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button v-on:click='getData()'>Pull API Data</button>
+    <!-- <button v-on:click='getData()'>Pull API Data</button> -->
    
     <div class="hello" ref="chartdiv"></div>
    </div>
@@ -105,6 +105,8 @@ export default {
     ]);
 
     this.root = root;
+
+    this.getData();
   },
   methods: {
     getData: function() {
