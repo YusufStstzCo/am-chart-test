@@ -1,10 +1,10 @@
 <template>
   <div>
-		<button v-on:click='getData()'>Pull API Data</button>
-    <button v-on:click='createSeries("Productive", "productive", "#48CFAE")'>Productive1</button>
+		<!-- <button v-on:click='getData()'>Pull API Data</button> -->
+    <!-- <button v-on:click='createSeries("Productive", "productive", "#48CFAE")'>Productive1</button>
     <button v-on:click='createSeries("Ineffective", "ineffective", "#ED5564")'>Ineffective</button>
     <button v-on:click='createSeries("30Weekavg", "weekavg", "#AAB2BD")'>30 Week Avg</button>
-    <button v-on:click='clear()'>Clear</button>
+    <button v-on:click='clear()'>Clear</button> -->
 		
 		<div class="hello" ref="chartdiv"></div>
   </div>
@@ -40,64 +40,64 @@ export default {
           weekavg: 0
         },{
           label: "01:00",
-          productive: 0,
-          ineffective: 0,
-          weekavg: 0
+          productive: 50,
+          ineffective: 40,
+          weekavg: 30
         }, {
           label: "02:00",
-          productive: 0,
-          ineffective: 0,
-          weekavg: 0
+          productive: 50,
+          ineffective: 40,
+          weekavg: 30
         }, {
           label: "03:00",
-          productive: 0,
-          ineffective: 0,
-          weekavg: 0
+          productive: 50,
+          ineffective: 40,
+          weekavg: 30
         }, {
           label: "04:00",
-          productive: 0,
-          ineffective: 0,
-          weekavg: 0
+          productive: 50,
+          ineffective: 40,
+          weekavg: 30
         }, {
           label: "05:00",
-          productive: 0,
-          ineffective: 0,
-          weekavg: 0
+          productive: 50,
+          ineffective: 40,
+          weekavg: 30
         }, {
           label: "06:00",
-          productive: 0,
-          ineffective: 0,
-          weekavg: 0
+          productive: 50,
+          ineffective: 40,
+          weekavg: 30
         }, {
           label: "07:00",
-          productive: 0,
-          ineffective: 0,
-          weekavg: 0
+          productive: 50,
+          ineffective: 40,
+          weekavg: 30
         }, {
           label: "08:00",
-          productive: 0,
-          ineffective: 0,
-          weekavg: 0
+          productive: 50,
+          ineffective: 40,
+          weekavg: 30
         }, {
           label: "09:00",
-          productive: 0,
-          ineffective: 0,
-          weekavg: 0
+          productive: 50,
+          ineffective: 40,
+          weekavg: 30
         }, {
           label: "10:00",
-          productive: 0,
-          ineffective: 0,
-          weekavg: 0
+          productive: 50,
+          ineffective: 40,
+          weekavg: 30
         }, {
           label: "11:00",
-          productive: 0,
-          ineffective: 0,
-          weekavg: 0
+          productive: 50,
+          ineffective: 40,
+          weekavg: 30
         }, {
           label: "12:00",
-          productive: 0,
-          ineffective: 0,
-          weekavg: 0
+          productive: 50,
+          ineffective: 40,
+          weekavg: 30
         }, {
           label: "13:00",
           productive: 50,
@@ -125,29 +125,29 @@ export default {
           weekavg: 30
         }, {
           label: "18:00",
-          productive: 0,
-          ineffective: 0,
-          weekavg: 0
+          productive: 50,
+          ineffective: 40,
+          weekavg: 30
         }, {
           label: "19:00",
-          productive: 0,
-          ineffective: 0,
-          weekavg: 0
+          productive: 50,
+          ineffective: 40,
+          weekavg: 30
         }, {
           label: "20:00",
-          productive: 0,
-          ineffective: 0,
-          weekavg: 0
+          productive: 50,
+          ineffective: 40,
+          weekavg: 30
         }, {
           label: "21:00",
-          productive: 0,
-          ineffective: 0,
-          weekavg: 0
+          productive: 50,
+          ineffective: 40,
+          weekavg: 30
         }, {
           label: "22:00",
-          productive: 0,
-          ineffective: 0,
-          weekavg: 0
+          productive: 50,
+          ineffective: 40,
+          weekavg: 30
         }, {
           label: "23:00",
           productive: 0,
@@ -221,7 +221,8 @@ export default {
 
     // Add cursor
     // this.chart.set("cursor", am5xy.LineSeries.new(this.root, {}));
-
+    
+    this.getData()
   },
   methods: {
     getData: function() {
@@ -244,7 +245,7 @@ export default {
             this.data[i].productive = result.data[i].percentage
           }
         }
-        console.log('productive results', this.data.productive)
+        console.log('productive results done')
         this.createSeries("Productive", "productive", "#48CFAE");
       })
 
@@ -264,7 +265,7 @@ export default {
             this.data[i].ineffective = result.data[i].percentage
           }
         }
-        console.log('ineffective results', this.data.ineffective)
+        console.log('ineffective results done')
         this.createSeries("Ineffective", "ineffective", "#ED5564");
       })
 
@@ -284,7 +285,7 @@ export default {
             this.data[i].weekavg = result.data[i].percentage
           }
         }
-        console.log('average results', this.data.weekavg)
+        console.log('average results done')
         this.createSeries("30Weekavg", "weekavg", "#AAB2BD");
       })
       
@@ -292,10 +293,8 @@ export default {
     },
     clear: function() {
       var length = this.chart.series.length
-      console.log('length', length)
       for(var i =0;i<length; i++) {
         this.chart.series.removeIndex(0)
-        console.log('removed')
       }
     },
     createSeries: function(name, field, color) {
