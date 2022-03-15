@@ -32,47 +32,47 @@ export default {
       data: [
         {
           label: "Admin",
-          value: 0
+          value: 50
         },
         {
           label: "Banking",
-          value: 0
+          value: 50
         },
         {
           label: "Business Systems",
-          value: 0
+          value: 50
         },
         {
           label: "Messaging",
-          value: 0
+          value: 50
         },
         {
           label: "Email",
-          value: 0
+          value: 50
         },
         {
           label: "IT Systems",
-          value: 0
+          value: 50
         },
         {
           label: "Meetings",
-          value: 0
+          value: 50
         },
         {
           label: "Research",
-          value: 0
+          value: 50
         },
         {
           label: "Social",
-          value: 0
+          value: 50
         },
         {
           label: "Training",
-          value: 0
+          value: 50
         },
         {
           label: "Ineffective",
-          value: 0
+          value: 50
         }
       ]
     }
@@ -113,8 +113,10 @@ export default {
     );
     // this.xAxis.data.setAll(this.data);
 
-    // this.createSeries("Series", "value");
+    this.createSeries();
     this.getData();
+    // this.series.columns.template.settings.cornerRadiusTR = 10
+    // console.log(this.series)
   },
   methods: {
     getData: function() {
@@ -176,8 +178,8 @@ export default {
             }
           ]
           console.log(this.data)
-          // this.series.data.setAll(this.data)
-          this.createSeries();
+          this.series.data.setAll(this.data)
+          // this.createSeries();
       })
     },
 
@@ -188,12 +190,17 @@ export default {
 					xAxis: this.xAxis, 
 					yAxis: this.yAxis, 
 					categoryYField: "label",
-					valueXField: "value"
+					valueXField: "value",
+          fill: am5.color("#48CFAE"),
+          stroke: am5.color("#48CFAE"),
 				}) 
 			);
-      this.series.set("fill", am5.color("#48CFAE"))
-      this.series.set("stroke", am5.color("#48CFAE"))
+      this.series.columns.template.setAll({
+        cornerRadiusTR: 10,
+        cornerRadiusBR: 10,
+      })
 			this.series.data.setAll(this.data);
+      console.log(this.series)
 		},
 
     clear: function() {
