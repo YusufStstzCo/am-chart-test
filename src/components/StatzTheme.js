@@ -10,14 +10,9 @@ export default class StatzTheme extends am5.Theme {
         // fill: am5.color("#48CFAE")
       });
 
-      this.rule("Grid").setAll({
-        
-      })
+      this.rule("Grid").setAll({})
 
-      this.rule("Columns").setAll({
-        cornerRadiusBR: 10,
-        cornerRadiusTR: 10
-      })
+      this.rule("Columns").setAll({})
       
       this.rule("Bullet").setup = function(target) {
         target.setAll({
@@ -30,4 +25,3 @@ export default class StatzTheme extends am5.Theme {
       }
     }
   }
-  0
