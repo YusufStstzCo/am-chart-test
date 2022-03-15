@@ -197,30 +197,30 @@ export default {
     this.createSeries("Ineffective", "ineffective", "#ED5564");
     this.createSeries("30Weekavg", "weekavg", "#aab2bd");
     
-    this.series.labels.template.setAll({
-      alignLabels: false,
-      fontSize: 12,
-      text: "{label}",
-      textType: "circular",
-      inside: true,
-      radius: 10,
-      fill: am5.color(0xFFFFFF),
-      centerX: am5.percent(100)
-    });
+    // this.series.labels.template.setAll({
+      // alignLabels: false,
+      // fontSize: 12,
+      // text: "{label}",
+      // textType: "circular",
+      // inside: true,
+      // radius: 10,
+      // fill: am5.color(0xFFFFFF),
+      // centerX: am5.percent(100)
+    // });
 
-		var tooltip = this.series.set("tooltip", am5.Tooltip.new(this.root, {}));
-			tooltip.label.set("text", "{valueY}");
+		// var tooltip = this.series.set("tooltip", am5.Tooltip.new(this.root, {}));
+		// 	tooltip.label.set("text", "{valueY}");
 
     // Add legend
-    let legend = this.chart.children.push(am5.Legend.new(this.root, {
-      centerX: am5.percent(50),
-      x: am5.percent(50),
-      layout: this.root.horizontalLayout
-    }));
-    legend.data.setAll(this.chart.series.values);
+    // let legend = this.chart.children.push(am5.Legend.new(this.root, {
+    //   centerX: am5.percent(50),
+    //   x: am5.percent(50),
+    //   layout: this.root.horizontalLayout
+    // }));
+    // legend.data.setAll(this.chart.series.values);
 
     // Add cursor
-    this.chart.set("cursor", am5xy.LineSeries.new(this.root, {}));
+    // this.chart.set("cursor", am5xy.LineSeries.new(this.root, {}));
 
   },
   methods: {
