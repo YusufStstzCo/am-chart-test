@@ -111,6 +111,12 @@ export default {
         renderer: am5xy.AxisRendererX.new(this.root, {}),
       })
     );
+
+    let yRenderer = this.yAxis.get("renderer");
+    yRenderer.grid.template.setAll({
+      strokeOpacity: 0
+    });
+
     // this.xAxis.data.setAll(this.data);
 
     this.createSeries();
@@ -198,9 +204,11 @@ export default {
       this.series.columns.template.setAll({
         cornerRadiusTR: 10,
         cornerRadiusBR: 10,
+        height: 15,
       })
+      console.log(this.yAxis)
 			this.series.data.setAll(this.data);
-      console.log(this.series)
+      // console.log(this.series)
 		},
 
     clear: function() {

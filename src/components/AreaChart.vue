@@ -191,6 +191,12 @@ export default {
         tooltip: am5.Tooltip.new(this.root, {})
       })
     );
+
+    let xRenderer = this.xAxis.get("renderer");
+    xRenderer.grid.template.setAll({
+      strokeOpacity: 0
+    });
+
     this.xAxis.data.setAll(this.data);
 
     this.createSeries("Productive", "productive", "#48CFAE");
