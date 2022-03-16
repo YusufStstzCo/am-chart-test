@@ -197,6 +197,13 @@ export default {
       strokeOpacity: 0
     });
 
+    this.chart.set("cursor", am5xy.XYCursor.new(this.root, {}));
+
+    // this.root.numberFormatter.setAll({
+    //   numberFormat: "#.# %",
+    //   numericFields: ["valueY"]
+    // });
+
     this.xAxis.data.setAll(this.data);
 
     this.createSeries("Productive", "productive", "#48CFAE");
@@ -311,6 +318,9 @@ export default {
           yAxis: this.yAxis,
           valueYField: field,
           categoryXField: "label",
+          tooltip: am5.Tooltip.new(this.root, {
+            labelText: "{name}: {valueY.formatNumber('#.##')}%"
+          })
         })
       );
       this.series.set("fill", am5.color(color))

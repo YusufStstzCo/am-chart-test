@@ -117,6 +117,8 @@ export default {
       strokeOpacity: 0
     });
 
+    this.chart.set("cursor", am5xy.XYCursor.new(this.root, {}));
+
     // this.xAxis.data.setAll(this.data);
 
     this.createSeries();
@@ -199,6 +201,9 @@ export default {
 					valueXField: "value",
           fill: am5.color("#48CFAE"),
           stroke: am5.color("#48CFAE"),
+          tooltip: am5.Tooltip.new(this.root, {
+            labelText: "{valueX} %"
+          })
 				}) 
 			);
       this.series.columns.template.setAll({
