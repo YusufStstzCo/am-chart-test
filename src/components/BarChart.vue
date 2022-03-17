@@ -1,8 +1,5 @@
 <template>
   <div>
-		<!-- <button v-on:click='getData()'>Pull API Data</button> -->
-		<!-- <button v-on:click='clear()'>Clear</button> -->
-		
 		<div class="hello" ref="chartdiv"></div>
   </div>
 </template>
@@ -10,7 +7,6 @@
 <script>
 import * as am5 from '@amcharts/amcharts5';
 import * as am5xy from '@amcharts/amcharts5/xy';
-// import * as am5percent from "@amcharts/amcharts5/percent";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import axios from 'axios'
 import StatzTheme from "./StatzTheme"
@@ -27,8 +23,6 @@ export default {
       chart: null,
       root: null,
       name: null,
-      // valueYField: null,
-
       xAxis: null,
       yAxis: null,
       data: [
@@ -102,7 +96,6 @@ export default {
       am5xy.XYChart.new(this.root, {
         panY: false,
         panX: false,
-        // wheelY: "zoomX",
         layout: this.root.horizontalLayout
       }) 
     );
@@ -121,9 +114,7 @@ export default {
       am5xy.ValueAxis.new(this.root, {
         min: 0,
         max: 100,
-        renderer: am5xy.AxisRendererX.new(this.root, {
-          // minGridDistance: 20
-        }),
+        renderer: am5xy.AxisRendererX.new(this.root, {}),
       })
     );
 
@@ -231,7 +222,6 @@ export default {
 					categoryYField: "label",
 					valueXField: value,
           fill: am5.color(color),
-          // stroke: am5.color(color),
           tooltip: am5.Tooltip.new(this.root, {
             labelText: "{valueX} %"
           }),
@@ -246,31 +236,6 @@ export default {
 			this.series.data.setAll(this.data);
       this.series.appear(2000);
 		},
-
-    // createSeries2: function() {
-		// 	this.series2 = this.chart.series.push( 
-		// 		am5xy.ColumnSeries.new(this.root, { 
-		// 			name: 'IneffectiveChart',
-		// 			xAxis: this.xAxis, 
-		// 			yAxis: this.yAxis, 
-		// 			categoryYField: "label",
-		// 			valueXField: "value",
-    //       fill: am5.color("#ed5564"),
-    //       stroke: am5.color("#ed5564"),
-    //       tooltip: am5.Tooltip.new(this.root, {
-    //         labelText: "{valueX} %"
-    //       }),
-		// 		}) 
-		// 	);
-    //   this.series2.columns.template.setAll({
-    //     cornerRadiusTR: 10,
-    //     cornerRadiusBR: 10,
-    //     height: 15,
-    //   })
-    //   console.log(this.series)
-		// 	this.series2.data.setAll(this.data2);
-    //   this.series2.appear(2000);
-		// },
 
     clear: function() {
       var length = this.chart.series.length
@@ -290,7 +255,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .hello {
   width: 100%;

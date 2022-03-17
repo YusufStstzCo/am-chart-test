@@ -1,11 +1,5 @@
 <template>
   <div>
-		<!-- <button v-on:click='getData()'>Pull API Data</button> -->
-    <!-- <button v-on:click='createSeries("Productive", "productive", "#48CFAE")'>Productive1</button>
-    <button v-on:click='createSeries("Ineffective", "ineffective", "#ED5564")'>Ineffective</button>
-    <button v-on:click='createSeries("30Weekavg", "weekavg", "#AAB2BD")'>30 Week Avg</button>
-    <button v-on:click='clear()'>Clear</button> -->
-		
 		<div class="hello" ref="chartdiv"></div>
   </div>
 </template>
@@ -13,7 +7,6 @@
 <script>
 import * as am5 from '@amcharts/amcharts5';
 import * as am5xy from '@amcharts/amcharts5/xy';
-// import * as am5percent from "@amcharts/amcharts5/percent";
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import axios from 'axios'
 import StatzTheme from "./StatzTheme"
@@ -29,7 +22,6 @@ export default {
       root: null,
       name: null,
       valueYField: null,
-
       xAxis: null,
       yAxis: null,
       data: [
@@ -158,7 +150,6 @@ export default {
     }
   },
   mounted() {
-    // this.getData();
     this.root = am5.Root.new(this.$refs.chartdiv);
 
     this.root.setThemes([am5themes_Animated.new(this.root), StatzTheme.new(this.root)]);
@@ -167,8 +158,6 @@ export default {
       am5xy.XYChart.new(this.root, {
         panX: false,
         panY: false,
-        // wheelX: "panX",
-        // wheelY: "zoomX"
       })
     );
 
@@ -185,9 +174,7 @@ export default {
     this.xAxis = this.chart.xAxes.push(
       am5xy.CategoryAxis.new(this.root, {
 				categoryField: "label",
-        renderer: am5xy.AxisRendererX.new(this.root, {
-          
-        }),
+        renderer: am5xy.AxisRendererX.new(this.root, {}),
         tooltip: am5.Tooltip.new(this.root, {})
       })
     );
@@ -199,43 +186,12 @@ export default {
 
     this.chart.set("cursor", am5xy.XYCursor.new(this.root, {}));
 
-    // this.root.numberFormatter.setAll({
-    //   numberFormat: "#.# %",
-    //   numericFields: ["valueY"]
-    // });
-
     this.xAxis.data.setAll(this.data);
 
     this.createSeries("Productive", "productive", "#48CFAE");
     this.createSeries("Ineffective", "ineffective", "#ED5564");
     this.createSeries("30Weekavg", "weekavg", "#aab2bd");
     this.series.appear(2000)
-    
-    // this.series.labels.template.setAll({
-      // alignLabels: false,
-      // fontSize: 12,
-      // text: "{label}",
-      // textType: "circular",
-      // inside: true,
-      // radius: 10,
-      // fill: am5.color(0xFFFFFF),
-      // centerX: am5.percent(100)
-    // });
-
-		// var tooltip = this.series.set("tooltip", am5.Tooltip.new(this.root, {}));
-		// 	tooltip.label.set("text", "{valueY}");
-
-    // Add legend
-    // let legend = this.chart.children.push(am5.Legend.new(this.root, {
-    //   centerX: am5.percent(50),
-    //   x: am5.percent(50),
-    //   layout: this.root.horizontalLayout
-    // }));
-    // legend.data.setAll(this.chart.series.values);
-
-    // Add cursor
-    // this.chart.set("cursor", am5xy.LineSeries.new(this.root, {}));
-    
     this.getData()
   },
   methods: {
@@ -252,7 +208,6 @@ export default {
       }
       axios.post('https://mainapi.workstatz.com/api/Data/GetMainWTGraph',userBody)
       .then(result=>{
-        // console.log('productive results', result.data)
 
         for(var i =0;i<result.data.length; i++) {
           if(this.data[i].label === result.data[i].timeStampHour){
@@ -273,7 +228,6 @@ export default {
       }
       axios.post('https://mainapi.workstatz.com/api/Data/GetMainWTGraph',userBody2)
       .then(result=>{
-        // console.log('ineffective results',result.data)
 
         for(var i =0;i<result.data.length; i++) {
           if(this.data[i].label === result.data[i].timeStampHour){
@@ -294,7 +248,6 @@ export default {
       }
       axios.post('https://mainapi.workstatz.com/api/Data/GetMainWTGraph',userBody3)
       .then(result=>{
-        // console.log('average results',result.data)
 
         for(var i =0;i<result.data.length; i++) {
           if(this.data[i].label === result.data[i].timeStampHour){
@@ -341,7 +294,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .hello {
   width: 100%;
