@@ -34,58 +34,58 @@ export default {
       data: [
         {
           label: "Admin",
-          value: 50,
-          value2: null
+          value: 25,
+          value2: 25
         },
         {
           label: "Banking",
-          value: 50,
-          value2: null
+          value: 25,
+          value2: 25
         },
         {
           label: "Business Systems",
-          value: 50,
-          value2: null
+          value: 25,
+          value2: 25
         },
         {
           label: "Messaging",
-          value: 50,
-          value2: null
+          value: 25,
+          value2: 25
         },
         {
           label: "Email",
-          value: 50,
-          value2: null
+          value: 25,
+          value2: 25
         },
         {
           label: "IT Systems",
-          value: 50,
-          value2: null
+          value: 25,
+          value2: 25
         },
         {
           label: "Meetings",
-          value: 50,
-          value2: null
+          value: 25,
+          value2: 25
         },
         {
           label: "Research",
-          value: 50,
-          value2: null
+          value: 25,
+          value2: 25
         },
         {
           label: "Social",
-          value: 50,
-          value2: null
+          value: 25,
+          value2: 25
         },
         {
           label: "Training",
-          value: 50,
-          value2: null
+          value: 25,
+          value2: 25
         },
         {
           label: "Ineffective",
-          value: 0,
-          value2: 50
+          value: 25,
+          value2: 25
         },
       ]
     }
@@ -135,14 +135,9 @@ export default {
 
     this.chart.set("cursor", am5xy.XYCursor.new(this.root, {}));
 
-    // this.xAxis.data.setAll(this.data);
-
     this.createSeries("value", "#48CFAE");
     this.createSeries("value2", "#ed5564");
-    // this.createSeries2()
     this.getData();
-    // this.series.columns.template.settings.cornerRadiusTR = 10
-    // console.log(this.series)
   },
   methods: {
     getData: function() {
@@ -216,6 +211,12 @@ export default {
           ]
           console.log(this.data)
           this.series.data.setAll(this.data)
+
+          this.clear()
+
+          this.createSeries("value", "#48CFAE");
+          this.createSeries("value2", "#ed5564");
+
           this.series.appear(2000);
       })
     },
