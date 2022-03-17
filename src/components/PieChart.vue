@@ -107,6 +107,7 @@ export default {
     this.root = root;
 
     this.getData();
+    this.series.appear(2000)
   },
   methods: {
     getData: function() {
@@ -142,6 +143,7 @@ export default {
 
         this.data = alertDataList;
         this.series.data.setAll(this.data)
+        this.series.appear(2000)
       })
     }
   },

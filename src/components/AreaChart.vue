@@ -209,6 +209,7 @@ export default {
     this.createSeries("Productive", "productive", "#48CFAE");
     this.createSeries("Ineffective", "ineffective", "#ED5564");
     this.createSeries("30Weekavg", "weekavg", "#aab2bd");
+    this.series.appear(2000)
     
     // this.series.labels.template.setAll({
       // alignLabels: false,
@@ -260,6 +261,7 @@ export default {
         }
         console.log('productive results done')
         this.createSeries("Productive", "productive", "#48CFAE");
+        this.series.appear(2000)
       })
 
       const userBody2 = {
@@ -280,6 +282,7 @@ export default {
         }
         console.log('ineffective results done')
         this.createSeries("Ineffective", "ineffective", "#ED5564");
+        this.series.appear(2000)
       })
 
       const userBody3 = {
@@ -300,6 +303,7 @@ export default {
         }
         console.log('average results done')
         this.createSeries("30Weekavg", "weekavg", "#AAB2BD");
+        this.series.appear(2000)
       })
       
       this.series.data.setAll(this.data)

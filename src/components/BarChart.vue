@@ -11,7 +11,7 @@
 import * as am5 from '@amcharts/amcharts5';
 import * as am5xy from '@amcharts/amcharts5/xy';
 // import * as am5percent from "@amcharts/amcharts5/percent";
-import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
+import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import axios from 'axios'
 import StatzTheme from "./StatzTheme"
 
@@ -108,7 +108,9 @@ export default {
       am5xy.ValueAxis.new(this.root, {
         min: 0,
         max: 100,
-        renderer: am5xy.AxisRendererX.new(this.root, {}),
+        renderer: am5xy.AxisRendererX.new(this.root, {
+          // minGridDistance: 20
+        }),
       })
     );
 
@@ -187,7 +189,7 @@ export default {
           ]
           console.log(this.data)
           this.series.data.setAll(this.data)
-          // this.createSeries();
+          this.series.appear(2000);
       })
     },
 
@@ -203,7 +205,7 @@ export default {
           stroke: am5.color("#48CFAE"),
           tooltip: am5.Tooltip.new(this.root, {
             labelText: "{valueX} %"
-          })
+          }),
 				}) 
 			);
       this.series.columns.template.setAll({
@@ -211,9 +213,9 @@ export default {
         cornerRadiusBR: 10,
         height: 15,
       })
-      console.log(this.yAxis)
+      console.log(this.series)
 			this.series.data.setAll(this.data);
-      // console.log(this.series)
+      this.series.appear(2000);
 		},
 
     clear: function() {
