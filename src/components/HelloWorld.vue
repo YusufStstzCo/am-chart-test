@@ -36,7 +36,7 @@ export default {
   },
   data: () => {
     return {
-      selectedChart: 'BarChart'
+      selectedChart: null
     }
   },
   methods: {
