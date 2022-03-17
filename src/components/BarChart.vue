@@ -144,8 +144,8 @@ export default {
 
       const userBody = {
         "clientId": 'AAA19916-278E-4691-9547-08D874108BD7',
-        "fromDate": '2022-02-23T00:00:00',
-        "toDate": '2022-02-23T23:59:59',
+        "fromDate": '2022-03-17T00:00:00',
+        "toDate": '2022-03-17T23:59:59',
         "userId": 193
       }
       axios.post('https://mainapi.workstatz.com/api/Data/GetCategoryDash',userBody)

@@ -245,8 +245,8 @@ export default {
 
       const userBody = {
         "clientId": 'AAA19916-278E-4691-9547-08D874108BD7',
-        "dateFrom": '2022-02-23T00:00:00',
-        "dateTo": '2022-02-23T23:59:59',
+        "dateFrom": '2022-03-17T00:00:00',
+        "dateTo": '2022-03-17T23:59:59',
         "state": 'Productive',
         "userId": 193
       }
@@ -266,8 +266,8 @@ export default {
 
       const userBody2 = {
         "clientId": 'AAA19916-278E-4691-9547-08D874108BD7',
-        "dateFrom": '2022-02-23T00:00:00',
-        "dateTo": '2022-02-23T23:59:59',
+        "dateFrom": '2022-03-17T00:00:00',
+        "dateTo": '2022-03-17T23:59:59',
         "state": 'Ineffective',
         "userId": 193
       }
@@ -287,8 +287,8 @@ export default {
 
       const userBody3 = {
         "clientId": 'AAA19916-278E-4691-9547-08D874108BD7',
-        "dateFrom": '2022-02-23T00:00:00',
-        "dateTo": '2022-02-23T23:59:59',
+        "dateFrom": '2022-03-17T00:00:00',
+        "dateTo": '2022-03-17T23:59:59',
         "state": '30Weekavg',
         "userId": 193
       }
