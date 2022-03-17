@@ -22,6 +22,8 @@ export default {
       dataLoaded:false,
       alertData: [],
       series: [],
+      series2: [],
+      categoryYField: null,
       chart: null,
       root: null,
       name: null,
@@ -32,48 +34,59 @@ export default {
       data: [
         {
           label: "Admin",
-          value: 50
+          value: 50,
+          value2: null
         },
         {
           label: "Banking",
-          value: 50
+          value: 50,
+          value2: null
         },
         {
           label: "Business Systems",
-          value: 50
+          value: 50,
+          value2: null
         },
         {
           label: "Messaging",
-          value: 50
+          value: 50,
+          value2: null
         },
         {
           label: "Email",
-          value: 50
+          value: 50,
+          value2: null
         },
         {
           label: "IT Systems",
-          value: 50
+          value: 50,
+          value2: null
         },
         {
           label: "Meetings",
-          value: 50
+          value: 50,
+          value2: null
         },
         {
           label: "Research",
-          value: 50
+          value: 50,
+          value2: null
         },
         {
           label: "Social",
-          value: 50
+          value: 50,
+          value2: null
         },
         {
           label: "Training",
-          value: 50
+          value: 50,
+          value2: null
         },
         {
           label: "Ineffective",
-          value: 50
-        }
+          value: 0,
+          value2: 50
+        },
       ]
     }
   },
@@ -116,14 +129,17 @@ export default {
 
     let yRenderer = this.yAxis.get("renderer");
     yRenderer.grid.template.setAll({
-      strokeOpacity: 0
+      strokeOpacity: 0,
+      inversed: true
     });
 
     this.chart.set("cursor", am5xy.XYCursor.new(this.root, {}));
 
     // this.xAxis.data.setAll(this.data);
 
-    this.createSeries();
+    this.createSeries("value", "#48CFAE");
+    this.createSeries("value2", "#ed5564");
+    // this.createSeries2()
     this.getData();
     // this.series.columns.template.settings.cornerRadiusTR = 10
     // console.log(this.series)
@@ -144,47 +160,58 @@ export default {
           this.data = [
             {
               label: "Admin",
-              value: result.data.admin
+              value: result.data.admin,
+              value2: null
             },
             {
               label: "Banking",
-              value: result.data.banking
+              value: result.data.banking,
+              value2: null
             },
             {
               label: "Business Systems",
-              value: result.data.bs
+              value: result.data.bs,
+              value2: null
             },
             {
               label: "Messaging",
-              value: result.data.chat
+              value: result.data.chat,
+              value2: null
             },
             {
               label: "Email",
-              value: result.data.email
+              value: result.data.email,
+              value2: null
             },
             {
               label: "IT Systems",
-              value: result.data.itsys
+              value: result.data.itsys,
+              value2: null
             },
             {
               label: "Meetings",
-              value: result.data.meetings
+              value: result.data.meetings,
+              value2: null
             },
             {
               label: "Research",
-              value: result.data.research
+              value: result.data.research,
+              value2: null
             },
             {
               label: "Social",
-              value: result.data.social
+              value: result.data.social,
+              value2: null
             },
             {
               label: "Training",
-              value: result.data.training
+              value: result.data.training,
+              value2: null
             },
             {
               label: "Ineffective",
-              value: result.data.ineffective
+              value: null,
+              value2: result.data.ineffective,
             }
           ]
           console.log(this.data)
@@ -193,16 +220,17 @@ export default {
       })
     },
 
-		createSeries: function() {
+		createSeries: function(value, color) {
 			this.series = this.chart.series.push( 
 				am5xy.ColumnSeries.new(this.root, { 
-					name: "barChart",
+					name: 'BarChart',
 					xAxis: this.xAxis, 
-					yAxis: this.yAxis, 
+					yAxis: this.yAxis,
+          stacked: true,
 					categoryYField: "label",
-					valueXField: "value",
-          fill: am5.color("#48CFAE"),
-          stroke: am5.color("#48CFAE"),
+					valueXField: value,
+          fill: am5.color(color),
+          // stroke: am5.color(color),
           tooltip: am5.Tooltip.new(this.root, {
             labelText: "{valueX} %"
           }),
@@ -217,6 +245,31 @@ export default {
 			this.series.data.setAll(this.data);
       this.series.appear(2000);
 		},
+
+    // createSeries2: function() {
+		// 	this.series2 = this.chart.series.push( 
+		// 		am5xy.ColumnSeries.new(this.root, { 
+		// 			name: 'IneffectiveChart',
+		// 			xAxis: this.xAxis, 
+		// 			yAxis: this.yAxis, 
+		// 			categoryYField: "label",
+		// 			valueXField: "value",
+    //       fill: am5.color("#ed5564"),
+    //       stroke: am5.color("#ed5564"),
+    //       tooltip: am5.Tooltip.new(this.root, {
+    //         labelText: "{valueX} %"
+    //       }),
+		// 		}) 
+		// 	);
+    //   this.series2.columns.template.setAll({
+    //     cornerRadiusTR: 10,
+    //     cornerRadiusBR: 10,
+    //     height: 15,
+    //   })
+    //   console.log(this.series)
+		// 	this.series2.data.setAll(this.data2);
+    //   this.series2.appear(2000);
+		// },
 
     clear: function() {
       var length = this.chart.series.length
