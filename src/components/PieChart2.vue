@@ -1,11 +1,6 @@
 <template>
-  <div style="display: flex; justify-content: space-evenly;">
-    <div style="width: 600px">
-      <div class="hello" ref="chartdiv"></div>
-    </div>
-    <div style="width: 600px">
-      <pie-2></pie-2>
-    </div>
+  <div>
+    <div class="hello" ref="chartdiv"></div>
   </div>
 </template>
 
@@ -16,13 +11,8 @@ import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import axios from 'axios'
 import StatzTheme from "./StatzTheme"
 
-import pie2 from "./PieChart2.vue"
-
 export default {
   name: 'HelloWorld',
-  components: {
-    pie2
-  },
   data: () => { 
     return {
       dataLoaded:false,
@@ -81,10 +71,10 @@ export default {
       alignLabels: false,
       fontSize: 16,
       text: "{category}",
-      textType: "circular",
-      inside: true,
+      // textType: "circular",
+      inside: false,
       radius: 10,
-      fill: am5.color(0xffffff),
+      fill: am5.color(0x000000),
       centerX: am5.percent(100)
     });
 
