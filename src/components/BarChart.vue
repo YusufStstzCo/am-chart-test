@@ -27,27 +27,37 @@ export default {
       yAxis: null,
       data: [
         {
-          label: "Admin",
+          label: "Ineffective",
           value: 25,
           value2: 25
         },
         {
-          label: "Banking",
+          label: "Social & News",
           value: 25,
           value2: 25
         },
         {
-          label: "Business Systems",
+          label: "Training & Learning",
           value: 25,
           value2: 25
         },
         {
-          label: "Messaging",
+          label: "Banking & Financial",
           value: 25,
           value2: 25
         },
         {
-          label: "Email",
+          label: "Research & Browsing",
+          value: 25,
+          value2: 25
+        },
+        {
+          label: "Chat & Messaging",
+          value: 25,
+          value2: 25
+        },
+        {
+          label: "Online Meetings",
           value: 25,
           value2: 25
         },
@@ -57,27 +67,17 @@ export default {
           value2: 25
         },
         {
-          label: "Meetings",
+          label: "Business Systems",
           value: 25,
           value2: 25
         },
         {
-          label: "Research",
+          label: "Admin",
           value: 25,
           value2: 25
         },
         {
-          label: "Social",
-          value: 25,
-          value2: 25
-        },
-        {
-          label: "Training",
-          value: 25,
-          value2: 25
-        },
-        {
-          label: "Ineffective",
+          label: "Email",
           value: 25,
           value2: 25
         },
@@ -114,7 +114,9 @@ export default {
       am5xy.ValueAxis.new(this.root, {
         min: 0,
         max: 100,
-        renderer: am5xy.AxisRendererX.new(this.root, {}),
+        renderer: am5xy.AxisRendererX.new(this.root, {
+          minGridDistance: 50
+        }),
       })
     );
 
@@ -145,28 +147,38 @@ export default {
           
           this.data = [
             {
-              label: "Admin",
-              value: result.data.admin,
+              label: "Ineffective",
+              value: null,
+              value2: result.data.ineffective,
+            },
+            {
+              label: "Social & News",
+              value: result.data.social,
               value2: null
             },
             {
-              label: "Banking",
+              label: "Training & Learning",
+              value: result.data.training,
+              value2: null
+            },
+            {
+              label: "Banking & Financial",
               value: result.data.banking,
               value2: null
             },
             {
-              label: "Business Systems",
-              value: result.data.bs,
+              label: "Research & Browsing",
+              value: result.data.research,
               value2: null
             },
             {
-              label: "Messaging",
+              label: "Chat & Messaging",
               value: result.data.chat,
               value2: null
             },
             {
-              label: "Email",
-              value: result.data.email,
+              label: "Online Meetings",
+              value: result.data.meetings,
               value2: null
             },
             {
@@ -175,30 +187,20 @@ export default {
               value2: null
             },
             {
-              label: "Meetings",
-              value: result.data.meetings,
+              label: "Business Systems",
+              value: result.data.bs,
               value2: null
             },
             {
-              label: "Research",
-              value: result.data.research,
+              label: "Admin",
+              value: result.data.admin,
               value2: null
             },
             {
-              label: "Social",
-              value: result.data.social,
+              label: "Email",
+              value: result.data.email,
               value2: null
             },
-            {
-              label: "Training",
-              value: result.data.training,
-              value2: null
-            },
-            {
-              label: "Ineffective",
-              value: null,
-              value2: result.data.ineffective,
-            }
           ]
           console.log(this.data)
           this.series.data.setAll(this.data)
