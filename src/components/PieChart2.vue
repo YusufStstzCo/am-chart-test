@@ -18,30 +18,7 @@ export default {
       dataLoaded:false,
       alertData: [],
       series: null,
-      data: [
-        {
-          label: "Monday",
-          value: 100
-        }, {
-          label: "Tuesday",
-          value: 120
-        }, {
-          label: "Wednesday",
-          value: 85
-        }, {
-          label: "Thursday",
-          value: 85
-        }, {
-          label: "Friday",
-          value: 85
-        }, {
-          label: "Saturday",
-          value: 85
-        }, {
-          label: "Sunday",
-          value: 85
-        }
-      ]
+      data: []
     }
   },
   mounted() {

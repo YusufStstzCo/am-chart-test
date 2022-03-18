@@ -1,5 +1,8 @@
 <template>
   <div style="display: flex; justify-content: space-evenly;">
+    <v-card v-if="isLoading" style="padding: 50px; background-color: #cdcdcd; border-radius: 10px; position: absolute; width: 80%; height: 350px; margin-top: 10px">
+      <miniloader></miniloader>
+    </v-card>
     <div style="width: 600px">
       <div class="hello" ref="chartdiv"></div>
     </div>
@@ -15,43 +18,23 @@ import * as am5percent from "@amcharts/amcharts5/percent";
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import axios from 'axios'
 import StatzTheme from "./StatzTheme"
+import miniloader from "./MiniLoader.vue"
 
 import pie2 from "./PieChart2.vue"
 
 export default {
   name: 'HelloWorld',
   components: {
+		'miniloader':miniloader,
     pie2
   },
   data: () => { 
     return {
+      isLoading: true,
       dataLoaded:false,
       alertData: [],
       series: null,
-      data: [
-        {
-          label: "Monday",
-          value: 100
-        }, {
-          label: "Tuesday",
-          value: 120
-        }, {
-          label: "Wednesday",
-          value: 85
-        }, {
-          label: "Thursday",
-          value: 85
-        }, {
-          label: "Friday",
-          value: 85
-        }, {
-          label: "Saturday",
-          value: 85
-        }, {
-          label: "Sunday",
-          value: 85
-        }
-      ]
+      data: []
     }
   },
   mounted() {
@@ -141,6 +124,7 @@ export default {
         this.dataLoaded = true;
         this.data = alertDataList;
         this.series.data.setAll(this.data)
+        this.isLoading = false
         this.series.appear(2000)
       })
     },

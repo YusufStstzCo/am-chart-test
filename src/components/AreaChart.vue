@@ -1,6 +1,11 @@
 <template>
   <div>
-		<div class="hello" ref="chartdiv"></div>
+    <v-card v-if="isLoading" style="padding: 50px; background-color: #cdcdcd; border-radius: 10px; margin-left: 25%; width: 500px; height: 400px; margin-top: 10px; float: left">
+      <miniloader></miniloader>
+    </v-card>
+    <div>
+      <div class="hello" ref="chartdiv"></div>
+    </div>
   </div>
 </template>
 
@@ -10,11 +15,16 @@ import * as am5xy from '@amcharts/amcharts5/xy';
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import axios from 'axios'
 import StatzTheme from "./StatzTheme"
+import miniloader from "./MiniLoader.vue"
 
 export default {
   name: 'HelloWorld',
+  components: {
+		'miniloader':miniloader,
+  },
   data: () => { 
     return {
+      isLoading: true,
       dataLoaded:false,
       alertData: [],
       series: [],
@@ -260,6 +270,7 @@ export default {
       })
       
       this.series.data.setAll(this.data)
+      this.isLoading = false
     },
     clear: function() {
       var length = this.chart.series.length

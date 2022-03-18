@@ -1,6 +1,11 @@
 <template>
   <div>
-		<div class="hello" ref="chartdiv"></div>
+    <v-card v-if="isLoading" style="padding: 50px; background-color: #cdcdcd; border-radius: 10px; margin-left: 25%; width: 500px; height: 400px; margin-top: 10px; float: left">
+      <miniloader></miniloader>
+    </v-card>
+    <div>
+      <div class="hello" ref="chartdiv"></div>
+    </div>
   </div>
 </template>
 
@@ -10,11 +15,16 @@ import * as am5xy from '@amcharts/amcharts5/xy';
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import axios from 'axios'
 import StatzTheme from "./StatzTheme"
+import miniloader from "./MiniLoader.vue"
 
 export default {
   name: 'HelloWorld',
+  components: {
+		'miniloader':miniloader,
+  },
   data: () => { 
     return {
+      isLoading: true,
       dataLoaded:false,
       alertData: [],
       series: [],
@@ -28,58 +38,58 @@ export default {
       data: [
         {
           label: "Ineffective",
-          value: 25,
-          value2: 25
+          value: null,
+          value2: null
         },
         {
           label: "Social & News",
-          value: 25,
-          value2: 25
+          value: null,
+          value2: null
         },
         {
           label: "Training & Learning",
-          value: 25,
-          value2: 25
+          value: null,
+          value2: null
         },
         {
           label: "Banking & Financial",
-          value: 25,
-          value2: 25
+          value: null,
+          value2: null
         },
         {
           label: "Research & Browsing",
-          value: 25,
-          value2: 25
+          value: null,
+          value2: null
         },
         {
           label: "Chat & Messaging",
-          value: 25,
-          value2: 25
+          value: null,
+          value2: null
         },
         {
           label: "Online Meetings",
-          value: 25,
-          value2: 25
+          value: null,
+          value2: null
         },
         {
           label: "IT Systems",
-          value: 25,
-          value2: 25
+          value: null,
+          value2: null
         },
         {
           label: "Business Systems",
-          value: 25,
-          value2: 25
+          value: null,
+          value2: null
         },
         {
           label: "Admin",
-          value: 25,
-          value2: 25
+          value: null,
+          value2: null
         },
         {
           label: "Email",
-          value: 25,
-          value2: 25
+          value: null,
+          value2: null
         },
       ]
     }
@@ -209,7 +219,7 @@ export default {
 
           this.createSeries("value", "#48CFAE");
           this.createSeries("value2", "#ed5564");
-
+          this.isLoading = false
           this.series.appear(2000);
       })
     },
